@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<head>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        .container{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 50px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            margin: 30px;
+        }
+
+        #left{
+            background-color: rgb(240, 240, 240);
+            height: max-content;
+            width: 100%;
+            padding: 10px 10px;
+        }
+
+        #right{
+            height: max-content;
+            width: 100%;
+            color: gray;
+        }
+
+        .task_list_heading {
+            margin: 0;
+        }
+
+        .description {
+            margin-bottom: 30px;
+        }
+
+        #textarea{
+            display: flex;
+            width: 100vh;
+            height: 200px;
+            resize: none;
+            border: none;
+            font-size: 30px;
+            outline: none;
+        }
+
+        .task {
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        .task-container{
+            display: grid;
+            grid-template-columns: 70% 5% 5% 5%;
+            grid-gap: 30px;
+            margin-top: 10px;
+        }
+
+        .checkbox {
+            margin-top: 12px;
+        }
+
+        .checkbox:hover {
+            cursor: pointer;
+        }
+
+        .edit-icon {
+            background-image: url("/edit-icon.jpeg");
+            background-size: contain;
+            background-position: center;
+            height: 25px;
+            width: 25px;
+            margin-top: 12px;
+            margin-left: 4px;
+            cursor: pointer;
+        }
+
+
+        .deleteBtn {
+            height: 25px;
+            width: 25px;
+            margin-top: 12px;
+        }
+
+        .deleteBtn:hover {
+            cursor: pointer;
+        }
+
+        #deleteAll {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        #deleteAll a {
+            font-size: 20px;
+            text-decoration: none;
+            background-color: lightskyblue;
+            border: 2px solid lightskyblue;
+            padding: 10px;
+            border-radius: 30px;
+            color: rgb(0, 0, 0);
+        }
+
+        #deleteAll a:hover {
+            cursor: pointer;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div id="left">
+            <h1 class="task_list_heading">TASK LIST</h1>
+
+            <p class="description">
+                Add task to your list by typing to the right and pressing Enter. You may then view pending task below.
+            </p>
+
+        </div>
+
+        <div id="right">
+            <textarea type="text" id="textarea" placeholder="Type your task here......"></textarea>
+        </div>
+    </div>
+    <div id="deleteAll">
+        <a href="#">Delete All Task</a>
+    </div>
+
+    <script src="To-Do-List.js"></script>
+</body>
+
+</html>
