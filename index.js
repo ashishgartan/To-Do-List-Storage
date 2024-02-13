@@ -25,14 +25,35 @@ addUserBtn.onclick = () => {
 
     if (edit_id == null) {
         //insert
+        let userid = Date.now();
+        let username = name;
         userArray.push({
-            name: name,
-            id: Date.now(),
+            name: username,
+            id: userid,
             isChecked: false
         });
+        let newdiv = document.createElement('div');
+        
+        newdiv.classList.add('row');
+        newdiv.id = `${userid}`;
+        newdiv.innerHTML = 
+            `<div class="col-md-4">${username}</div>
+            <div class="col-md-4">
+                <div class="form-check form-switch ">
+                <input class="form-check-input" type="checkbox" role="switch" onchange="checkboxChanged('${userid}')" id="flexSwitchCheckChecked">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <i class="btn mx-3 fa-regular fa-pen-to-square" onclick='EditInfo("${userid}")'></i>
+                <i class="btn fa-solid fa-trash" onclick='DeleteInfo("${userid}")'></i>
+            </div>`
+        recordsDisplay.appendChild(newdiv);
+
     }
     else {
         //edit
+        let currentuser = document.getElementById(edit_id);
+        currentuser.firstElementChild.innerHTML = name;
         userArray = userArray.map((user) => {
             if (user.id == edit_id) {
                 user.name = name;
@@ -51,8 +72,9 @@ addUserBtn.onclick = () => {
 
 function SaveInfo(userArray) {
     let str = JSON.stringify(userArray);
+    console.log(str);
     localStorage.setItem('users', str);
-    DisplayInfo();
+    //DisplayInfo();
 }
 
 function DisplayInfo() {
@@ -114,6 +136,7 @@ function EditInfo(rowid) {
     console.log('user edited');
 }
 
+//delete function all good working
 function DeleteInfo(rowid) {
     console.log('Delete calling' + rowid);
 
@@ -121,6 +144,7 @@ function DeleteInfo(rowid) {
         return user.id != rowid;
     });
 
+    recordsDisplay.removeChild(document.getElementById(rowid));    
     SaveInfo(userArray);
 
     console.log('user deleted');
